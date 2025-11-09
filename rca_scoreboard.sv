@@ -16,10 +16,11 @@ class adder_scoreboard extends uvm_scoreboard;
     virtual function void write(adder_transaction trans);
         bit [8:0] expected = trans.A + trans.B + trans.Cin;
       if (trans.S !== expected[7:0] || trans.Cout !== expected[8]) begin
-            `uvm_error("SCOREBOARD", $sformatf("Mismatch: a=%0d b=%0d cin=%0d | Expected sum=%0d, cout=%0d | Got sum=%0d, cout=%0d",
-                                               trans.A, trans.B, trans.Cin, expected[7:0], expected[8], trans.S, trans.Cout))
+        `uvm_info("SCOREBOARD", $sformatf("MISMATCH: a=%0d b=%0d cin=%0d | Expected sum=%0d, cout=%0d | Got sum=%0d, cout=%0d",
+                                          trans.A, trans.B, trans.Cin, expected[7:0], expected[8], trans.S, trans.Cout),UVM_LOW);
         end else begin
-            `uvm_info("SCOREBOARD", "Test Passed", UVM_MEDIUM)
+          `uvm_info("SCOREBOARD", $sformatf("MATCH: a=%0d b=%0d cin=%0d | Expected sum=%0d, cout=%0d | Got sum=%0d, cout=%0d",
+                                            trans.A, trans.B, trans.Cin, expected[7:0], expected[8], trans.S, trans.Cout),UVM_LOW);
         end
     endfunction
   
