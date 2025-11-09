@@ -3,7 +3,7 @@ import uvm_pkg::*;
 
 `include "interface.sv"
 `include "transaction.sv"
-`include "generator.sv"
+`include "sequence.sv"
 `include "driver.sv"
 `include "monitor.sv"
 `include "agent.sv"
